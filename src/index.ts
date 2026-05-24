@@ -6,12 +6,12 @@ const app = Fastify();
 
 app.register(detect);
 
-const PORT = Number(process.env.PORT);
+const PORT = Number(process.env.PORT) || 8080;
 
 app.get("/", async (request, reply) => {
     reply.send({ message: "Welcome to the Tracktech API! Use /detect?url=yourwebsite.com to detect technologies." });
 });
 
-app.listen({ port: PORT }).then(() => {
+app.listen({ port: PORT, host: "0.0.0.0" }).then(() => {
     console.log(`Server is running on port ${PORT}`);
 });
